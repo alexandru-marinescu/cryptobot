@@ -9,7 +9,9 @@ namespace netdockerworker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
+            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
+            Console.WriteLine($"Hello World. This is my key: {apiKey}");
+            Thread.Sleep(60000);
             //HttpClient client = new HttpClient();
             //while(true) {
             //    client.Send(new HttpRequestMessage(
