@@ -16,24 +16,10 @@ namespace netdockerworker
         static void Main(string[] args)
         {
             //heroku
-            var chromeOptions = new ChromeOptions()
-            {
-                BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"),
-            };
-            chromeOptions.AddArguments("window-size=1920,1080");
-            chromeOptions.AddArguments("disable-gpu");
-            chromeOptions.AddArguments("enable-javascript");
-            chromeOptions.AddArguments("disable-extensions");
-            chromeOptions.AddArguments("proxy-server='direct://'");
-            chromeOptions.AddArguments("proxy-bypass-list=*");
-            chromeOptions.AddArguments("start-maximized");
-            chromeOptions.AddArguments("headless");
-            chromeOptions.AddArguments("no-sandbox");
-            chromeOptions.AddArguments("disable-dev-shm-usage");
-            IWebDriver driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
-
-            //local
-            //var chromeOptions = new ChromeOptions();
+            //var chromeOptions = new ChromeOptions()
+            //{
+            //    BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"),
+            //};
             //chromeOptions.AddArguments("window-size=1920,1080");
             //chromeOptions.AddArguments("disable-gpu");
             //chromeOptions.AddArguments("enable-javascript");
@@ -42,7 +28,21 @@ namespace netdockerworker
             //chromeOptions.AddArguments("proxy-bypass-list=*");
             //chromeOptions.AddArguments("start-maximized");
             //chromeOptions.AddArguments("headless");
-            //IWebDriver driver = new ChromeDriver(chromeOptions);
+            //chromeOptions.AddArguments("no-sandbox");
+            //chromeOptions.AddArguments("disable-dev-shm-usage");
+            //IWebDriver driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
+
+            //local
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments("window-size=1920,1080");
+            chromeOptions.AddArguments("disable-gpu");
+            chromeOptions.AddArguments("enable-javascript");
+            chromeOptions.AddArguments("disable-extensions");
+            chromeOptions.AddArguments("proxy-server='direct://'");
+            chromeOptions.AddArguments("proxy-bypass-list=*");
+            chromeOptions.AddArguments("start-maximized");
+            chromeOptions.AddArguments("headless");
+            IWebDriver driver = new ChromeDriver(chromeOptions);
 
 
             var technicalsURL = "https://www.tradingview.com/symbols/MATICBTC/technicals/";
