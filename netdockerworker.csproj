@@ -6,9 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Selenium.PhantomJS.WebDriver" Version="2.1.1" />
+    <PackageReference Include="Chromium.ChromeDriver" Version="2.37.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.0.1" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="95.0.4638.5401" />
+    <PackageReference Include="WebDriver.ChromeDriver.win32" Version="94.0.4606.61" />
   </ItemGroup>
 
 </Project>
