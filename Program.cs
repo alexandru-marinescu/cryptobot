@@ -1,8 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,24 +20,107 @@ namespace netdockerworker
             {
                 BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"),
             };
-            chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage" });
+            chromeOptions.AddArguments("window-size=1920,1080");
+            chromeOptions.AddArguments("disable-gpu");
+            chromeOptions.AddArguments("enable-javascript");
+            chromeOptions.AddArguments("disable-extensions");
+            chromeOptions.AddArguments("proxy-server='direct://'");
+            chromeOptions.AddArguments("proxy-bypass-list=*");
+            chromeOptions.AddArguments("start-maximized");
+            chromeOptions.AddArguments("headless");
+            chromeOptions.AddArguments("no-sandbox");
+            chromeOptions.AddArguments("disable-dev-shm-usage");
             IWebDriver driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
 
             //local
             //var chromeOptions = new ChromeOptions();
-            //chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu"});
+            //chromeOptions.AddArguments("window-size=1920,1080");
+            //chromeOptions.AddArguments("disable-gpu");
+            //chromeOptions.AddArguments("enable-javascript");
+            //chromeOptions.AddArguments("disable-extensions");
+            //chromeOptions.AddArguments("proxy-server='direct://'");
+            //chromeOptions.AddArguments("proxy-bypass-list=*");
+            //chromeOptions.AddArguments("start-maximized");
+            //chromeOptions.AddArguments("headless");
             //IWebDriver driver = new ChromeDriver(chromeOptions);
+
 
             var technicalsURL = "https://www.tradingview.com/symbols/MATICBTC/technicals/";
             driver.Navigate().GoToUrl(technicalsURL);
-            WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(15));
-            Console.WriteLine("waiting 14 seconds");
-            Thread.Sleep(14000);
-            Console.WriteLine("done waiting");
-            wait.Until(driver => driver.FindElement(By.XPath("//a[@href='/ideas/relativestrengthindex/']")));
-            IWebElement element = driver.FindElement(By.XPath("//a[@href='/ideas/relativestrengthindex/']"));
+            Thread.Sleep(5000);
 
-            Console.WriteLine(element.GetAttribute("innerText"));
+            Actions actions = new Actions(driver);
+
+
+            IWebElement page = driver.FindElement(By.Id("1m"));           
+            actions.MoveToElement(page).Click().Perform();
+            Thread.Sleep(2000);
+
+            List<IWebElement> table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
+
+            for (int i = 1; i < table.Count(); i++)
+            {
+                Console.WriteLine($"" +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
+                    $"  -  " +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
+                    $"  -  " +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+            }
+            Console.WriteLine();
+
+            page = driver.FindElement(By.Id("5m"));
+            actions.MoveToElement(page).Click().Perform();
+            Thread.Sleep(2000);
+
+            table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
+
+            for (int i = 1; i < table.Count(); i++)
+            {
+                Console.WriteLine($"" +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
+                    $"  -  " +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
+                    $"  -  " +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+            }
+            Console.WriteLine();
+
+            page = driver.FindElement(By.Id("15m"));
+            actions.MoveToElement(page).Click().Perform();
+            Thread.Sleep(2000);
+
+            table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
+
+            for (int i = 1; i < table.Count(); i++)
+            {
+                Console.WriteLine($"" +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
+                    $"  -  " +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
+                    $"  -  " +
+                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+            }
+            Console.WriteLine();
+
+            //IWebElement parentTable = element.FindElement(By.XPath("./ancestor::table[1]"));
+            //if (element == null)
+            //{
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        Console.WriteLine("sleeping 2s");
+            //        Thread.Sleep(2000);
+            //        element = driver.FindElement(By.XPath("//a[@href='/ideas/relativestrengthindex/']//parent:table"));
+            //        if (element != null) break;
+            //    }
+            //}
+
+            //IWebElement fivem = driver.FindElement(By.Id("5m"));
+            //fivem.Click();
+            //var elemClass = element.GetAttribute("class");
+            //Console.WriteLine(elemClass);
         }
+
+
     }
 }
