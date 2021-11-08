@@ -1,1 +1,1 @@
-worker: netdockerworker.exe
+worker: ./netdockerworker.exe
