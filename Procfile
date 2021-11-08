@@ -1,1 +1,1 @@
-worker: Dockerfile
+worker: dotnet run
