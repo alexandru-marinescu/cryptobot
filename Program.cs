@@ -4,6 +4,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
@@ -17,9 +18,10 @@ namespace netdockerworker
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine(Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"));
-                Console.WriteLine(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"));
+                //Console.WriteLine(Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"));
+                //Console.WriteLine(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"));
                 Thread.Sleep(1000);
+                Console.WriteLine(Directory.EnumerateDirectories(Environment.CurrentDirectory));
             }
             //heroku
             var chromeOptions = new ChromeOptions()
