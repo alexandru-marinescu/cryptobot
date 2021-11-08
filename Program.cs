@@ -15,9 +15,6 @@ namespace netdockerworker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("My App has started:");
-            Console.WriteLine(Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"));
-            Console.WriteLine(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"));
             //heroku
             var chromeOptions = new ChromeOptions()
             {
@@ -53,6 +50,7 @@ namespace netdockerworker
             Thread.Sleep(5000);
 
             Actions actions = new Actions(driver);
+            //var startTime = DateTime.Now;
 
             while (true)
             {
@@ -106,25 +104,7 @@ namespace netdockerworker
                         $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
                 }
                 Console.WriteLine();
-
-                Thread.Sleep(60000);
             }
-            //IWebElement parentTable = element.FindElement(By.XPath("./ancestor::table[1]"));
-            //if (element == null)
-            //{
-            //    for (int i = 0; i < 5; i++)
-            //    {
-            //        Console.WriteLine("sleeping 2s");
-            //        Thread.Sleep(2000);
-            //        element = driver.FindElement(By.XPath("//a[@href='/ideas/relativestrengthindex/']//parent:table"));
-            //        if (element != null) break;
-            //    }
-            //}
-
-            //IWebElement fivem = driver.FindElement(By.Id("5m"));
-            //fivem.Click();
-            //var elemClass = element.GetAttribute("class");
-            //Console.WriteLine(elemClass);
         }
 
 
