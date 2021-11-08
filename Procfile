@@ -1,1 +1,1 @@
-worker: dotnet ./netdockerworker.dll
+worker: dotnet ./out/netdockerworker.dll
