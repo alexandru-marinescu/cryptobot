@@ -104,6 +104,8 @@ namespace netdockerworker
                         $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
                 }
                 Console.WriteLine();
+
+                Thread.Sleep(30000);
             }
         }
 
