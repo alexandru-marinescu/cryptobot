@@ -1,1 +1,1 @@
-worker: ./netdockerworker
+worker: Dockerfile
