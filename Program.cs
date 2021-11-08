@@ -21,7 +21,11 @@ namespace netdockerworker
                 //Console.WriteLine(Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"));
                 //Console.WriteLine(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"));
                 Thread.Sleep(1000);
-                Console.WriteLine(Directory.EnumerateDirectories(Environment.CurrentDirectory));
+                foreach (var item in Directory.EnumerateDirectories(Environment.CurrentDirectory))
+                {
+                    Console.WriteLine(item);
+                }
+                //Console.WriteLine(Directory.EnumerateDirectories(Environment.CurrentDirectory));
             }
             //heroku
             var chromeOptions = new ChromeOptions()
