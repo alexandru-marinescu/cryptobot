@@ -17,7 +17,7 @@ namespace netdockerworker
             {
                 BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"),
             };
-            chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu", "'no-sandbox'" });
+            chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage" });
             IWebDriver driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
             var technicalsURL = "https://www.tradingview.com/symbols/MATICBTC/technicals/";
             driver.Navigate().GoToUrl(technicalsURL);
