@@ -14,17 +14,17 @@ namespace netdockerworker
         static void Main(string[] args)
         {
             //heroku
-            //var chromeOptions = new ChromeOptions()
-            //{
-            //    BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"),
-            //};
-            //chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage" });
-            //IWebDriver driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
+            var chromeOptions = new ChromeOptions()
+            {
+                BinaryLocation = Environment.GetEnvironmentVariable("GOOGLE_CHROME_BIN"),
+            };
+            chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu", "no-sandbox", "disable-dev-shm-usage" });
+            IWebDriver driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
 
             //local
-            var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu"});
-            IWebDriver driver = new ChromeDriver(chromeOptions);
+            //var chromeOptions = new ChromeOptions();
+            //chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu"});
+            //IWebDriver driver = new ChromeDriver(chromeOptions);
 
             var technicalsURL = "https://www.tradingview.com/symbols/MATICBTC/technicals/";
             driver.Navigate().GoToUrl(technicalsURL);
