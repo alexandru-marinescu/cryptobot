@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "netdockerworker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "API_KEY": "61851ed1c2eb836d86faae7f"
+      }
+    }
+  }
+}

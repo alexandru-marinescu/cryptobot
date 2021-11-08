@@ -1,4 +1,8 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,18 +13,17 @@ namespace netdockerworker
     {
         static void Main(string[] args)
         {
-            var apiKey = Environment.GetEnvironmentVariable("API_KEY");
-            Console.WriteLine($"Hello World. This is my key: {apiKey}");
-            Thread.Sleep(60000);
-            //HttpClient client = new HttpClient();
-            //while(true) {
-            //    client.Send(new HttpRequestMessage(
-            //        HttpMethod.Post,
-            //        "https://stefanini-counter.herokuapp.com/api/counter"
-            //    ));     
-            //    Console.WriteLine("Incrementing the counter at https://stefanini-counter.herokuapp.com/");
-            //    Thread.Sleep(5000);
-            //}
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArguments(new List<string>() { "headless", "disable-gpu" });
+            IWebDriver driver = new ChromeDriver(chromeOptions);
+            var technicalsURL = "https://www.tradingview.com/symbols/MATICBTC/technicals/";
+            driver.Navigate().GoToUrl(technicalsURL);
+            WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(15));
+            Thread.Sleep(5000);
+            wait.Until(driver => driver.FindElement(By.XPath("//a[@href='/ideas/relativestrengthindex/']")));
+            IWebElement element = driver.FindElement(By.XPath("//a[@href='/ideas/relativestrengthindex/']"));
+
+            Console.WriteLine(element.GetAttribute("innerText"));
         }
     }
 }
