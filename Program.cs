@@ -51,58 +51,61 @@ namespace netdockerworker
 
             Actions actions = new Actions(driver);
 
-
-            IWebElement page = driver.FindElement(By.Id("1m"));           
-            actions.MoveToElement(page).Click().Perform();
-            Thread.Sleep(2000);
-
-            List<IWebElement> table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
-
-            for (int i = 1; i < table.Count(); i++)
+            while (true)
             {
-                Console.WriteLine($"" +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
-                    $"  -  " +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
-                    $"  -  " +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+                IWebElement page = driver.FindElement(By.Id("1m"));
+                actions.MoveToElement(page).Click().Perform();
+                Thread.Sleep(2000);
+
+                List<IWebElement> table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
+
+                for (int i = 1; i < table.Count(); i++)
+                {
+                    Console.WriteLine($"" +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
+                        $"  -  " +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
+                        $"  -  " +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+                }
+                Console.WriteLine();
+
+                page = driver.FindElement(By.Id("5m"));
+                actions.MoveToElement(page).Click().Perform();
+                Thread.Sleep(2000);
+
+                table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
+
+                for (int i = 1; i < table.Count(); i++)
+                {
+                    Console.WriteLine($"" +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
+                        $"  -  " +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
+                        $"  -  " +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+                }
+                Console.WriteLine();
+
+                page = driver.FindElement(By.Id("15m"));
+                actions.MoveToElement(page).Click().Perform();
+                Thread.Sleep(2000);
+
+                table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
+
+                for (int i = 1; i < table.Count(); i++)
+                {
+                    Console.WriteLine($"" +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
+                        $"  -  " +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
+                        $"  -  " +
+                        $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
+                }
+                Console.WriteLine();
+
+                Thread.Sleep(60000);
             }
-            Console.WriteLine();
-
-            page = driver.FindElement(By.Id("5m"));
-            actions.MoveToElement(page).Click().Perform();
-            Thread.Sleep(2000);
-
-            table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
-
-            for (int i = 1; i < table.Count(); i++)
-            {
-                Console.WriteLine($"" +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
-                    $"  -  " +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
-                    $"  -  " +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
-            }
-            Console.WriteLine();
-
-            page = driver.FindElement(By.Id("15m"));
-            actions.MoveToElement(page).Click().Perform();
-            Thread.Sleep(2000);
-
-            table = driver.FindElements(By.XPath("//a[@href='/ideas/relativestrengthindex/']//ancestor::table[1]//descendant::tr")).ToList();
-
-            for (int i = 1; i < table.Count(); i++)
-            {
-                Console.WriteLine($"" +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText")}" +
-                    $"  -  " +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText")}" +
-                    $"  -  " +
-                    $"{table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText")}");
-            }
-            Console.WriteLine();
-
             //IWebElement parentTable = element.FindElement(By.XPath("./ancestor::table[1]"));
             //if (element == null)
             //{
