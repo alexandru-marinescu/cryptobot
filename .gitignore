@@ -1,2 +1,9 @@
 bin/
 obj/
+/out/Newtonsoft.Json.dll
+/out/WebDriver.dll
+/out/netdockerworker.deps.json
+/out/netdockerworker.dll
+/out/netdockerworker.exe
+/out/netdockerworker.pdb
+/out/netdockerworker.runtimeconfig.json

@@ -3,6 +3,8 @@
     "netdockerworker": {
       "commandName": "Project",
       "environmentVariables": {
+        "ENV": "LOCAL",
+        "Key": "Value",
         "API_KEY": "61851ed1c2eb836d86faae7f"
       }
     }
