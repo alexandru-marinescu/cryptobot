@@ -100,6 +100,7 @@ namespace netdockerworker
                     chromeOptions.AddArguments("disable-dev-shm-usage");
 
                     _driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
+                    Console.WriteLine("chose HEROKU driver");
                 }
                 else
                 {
@@ -113,28 +114,35 @@ namespace netdockerworker
                     chromeOptions.AddArguments("start-maximized");
                     chromeOptions.AddArguments("headless");
                     _driver = new ChromeDriver(chromeOptions);
+                    Console.WriteLine("chose LOCAL driver");
                 }
                 
                 try
                 {
                     var technicalsURL = "https://www.tradingview.com/symbols/" + coin + "USDT/technicals/";
+                    Console.WriteLine("URL: " + technicalsURL);
                     _driver.Navigate().GoToUrl(technicalsURL);
                     Thread.Sleep(int.Parse(Environment.GetEnvironmentVariable("SLEEP1")));
 
                     Actions actions = new Actions(_driver);
 
-                    Console.WriteLine($"Getting {interval}");
+                    Console.WriteLine($"Getting {interval} for {coin}");
                     IWebElement page = _driver.FindElement(By.Id(interval));
+                    Console.WriteLine($"found page: {page != null}");
                     actions.MoveToElement(page).Click().Perform();
+                    Console.WriteLine("after click");
                     Thread.Sleep(int.Parse(Environment.GetEnvironmentVariable("SLEEP2")));
 
                     var table = _driver.FindElements(By.XPath($"//a[@href='/ideas/{side}/']//ancestor::table[1]//descendant::tr")).ToList();
-
+                    Console.WriteLine($"found table: {table != null}");
                     for (int i = 1; i < table.Count(); i++)
                     {
                         var nam = table[i].FindElements(By.XPath("./descendant::td")).ToList()[0].FindElement(By.XPath("./span/a")).GetAttribute("innerText");
+                        Console.WriteLine($"found name: {nam}");
                         var val = float.Parse(table[i].FindElements(By.XPath("./descendant::td")).ToList()[1].GetAttribute("innerText").Replace('−', '-'));
+                        Console.WriteLine($"found value: {val}");
                         var decis = (DecisionEnum)Enum.Parse(typeof(DecisionEnum), table[i].FindElements(By.XPath("./descendant::td")).ToList()[2].GetAttribute("innerText"));
+                        Console.WriteLine($"found decision: {decis}");
 
                         var indicator = new Indicator()
                         {
