@@ -96,8 +96,8 @@ namespace netdockerworker
                     chromeOptions.AddArguments("proxy-bypass-list=*");
                     chromeOptions.AddArguments("start-maximized");
                     chromeOptions.AddArguments("headless");
-                    chromeOptions.AddArguments("no-sandbox");
-                    chromeOptions.AddArguments("disable-dev-shm-usage");
+                    //chromeOptions.AddArguments("no-sandbox");
+                    //chromeOptions.AddArguments("disable-dev-shm-usage");
 
                     _driver = new ChromeDriver(Environment.GetEnvironmentVariable("CHROMEDRIVER_PATH"), chromeOptions);
                     Console.WriteLine("chose HEROKU driver");
