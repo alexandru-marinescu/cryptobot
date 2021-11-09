@@ -119,14 +119,14 @@ namespace netdockerworker
                 {
                     var technicalsURL = "https://www.tradingview.com/symbols/" + coin + "USDT/technicals/";
                     _driver.Navigate().GoToUrl(technicalsURL);
-                    Thread.Sleep(500);
+                    Thread.Sleep(int.Parse(Environment.GetEnvironmentVariable("SLEEP1")));
 
                     Actions actions = new Actions(_driver);
 
                     Console.WriteLine($"Getting {interval}");
                     IWebElement page = _driver.FindElement(By.Id(interval));
                     actions.MoveToElement(page).Click().Perform();
-                    Thread.Sleep(200);
+                    Thread.Sleep(int.Parse(Environment.GetEnvironmentVariable("SLEEP2")));
 
                     var table = _driver.FindElements(By.XPath($"//a[@href='/ideas/{side}/']//ancestor::table[1]//descendant::tr")).ToList();
 

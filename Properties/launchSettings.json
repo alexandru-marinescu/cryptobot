@@ -5,7 +5,9 @@
       "environmentVariables": {
         "ENV": "LOCAL",
         "Key": "Value",
-        "API_KEY": "61851ed1c2eb836d86faae7f"
+        "API_KEY": "61851ed1c2eb836d86faae7f",
+        "SLEEP2": "200",
+        "SLEEP1": "500"
       }
     }
   }
