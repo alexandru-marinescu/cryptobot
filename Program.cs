@@ -18,17 +18,37 @@ namespace netdockerworker
         static void Main(string[] args)
         {
             var tr = new TechnicalsReader();
-            DateTime start = DateTime.Now;
 
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            var coins = tr.GetAccountCoins();
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds,
-                ts.Milliseconds / 10);
-            Console.WriteLine("RunTime " + elapsedTime);
+            var decider = new Decider();
+
+
+            Console.WriteLine("Started app");
+            int iteration = 0;
+            int maxFailure = 10;
+            while (maxFailure > 0)
+            {
+                iteration++;
+                try
+                {
+                    Console.WriteLine("Iteration " + iteration);
+                    DateTime start = DateTime.Now;
+                    Stopwatch stopWatch = new Stopwatch();
+                    stopWatch.Start();
+                    var coins = tr.GetAccountCoins();
+                    decider.DecideOrders(coins);
+                    stopWatch.Stop();
+                    TimeSpan ts = stopWatch.Elapsed;
+                    var remaining = new TimeSpan(0, 5, 0) - ts;
+                    Thread.Sleep(remaining);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    maxFailure--;
+                }
+            }
+            Console.WriteLine("Stopped app");
             Console.ReadKey();
         }
     }

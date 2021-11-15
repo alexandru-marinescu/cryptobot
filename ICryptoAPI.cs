@@ -8,9 +8,10 @@ namespace netdockerworker
 {
     interface ICryptoAPI
     {
-        float GetPrice(string symbol);
-        List<Tuple<string, float>> GetPrices();
+        decimal GetPrice(string symbol);
+        List<Tuple<string, decimal>> GetPrices();
         Account GetAccount();
-        void PlaceOrder(OrderEnum orderType, string symbol, float quantity);
+        List<Order> GetAccountOrders();
+        void PlaceOrder(OrderEnum orderType, string symbol, decimal quantity);
     }
 }
